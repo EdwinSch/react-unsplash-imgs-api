@@ -5,6 +5,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   // States
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("dog");
 
   // Dark Theme
   const toggleDarkTheme = () => {
@@ -20,6 +21,8 @@ export const AppProvider = ({ children }) => {
       value={{
         isDarkTheme,
         toggleDarkTheme,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

@@ -1,7 +1,12 @@
+import { useGlobalContext } from "../context";
+
 const SearchForm = () => {
+  const { setSearchTerm } = useGlobalContext();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const searchValue = event.target.elements.search.value;
+    setSearchTerm(searchValue);
 
     if (!searchValue) {
       return;
@@ -10,7 +15,7 @@ const SearchForm = () => {
 
   return (
     <section>
-      <h1 className="title">unsplash images</h1>
+      <h1 className="title">search unsplash images</h1>
       <form className="search-form" onSubmit={handleSubmit}>
         <input
           type="text"
