@@ -1,25 +1,29 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  // ---- Global States
-  const [items, setItems] = useState(getLocalStorage());
+  // States
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  // ---- Global Functions
-  const addItem = (itemName) => {
-    const newItem = {
-      id: nanoid(),
-      task: itemName,
-      completed: false,
-    };
-    const newItems = [...items, newItem];
-    setItems(newItems);
-    setLocalStorage(newItems);
+  // Dark Theme
+  const toggleDarkTheme = () => {
+    const newDarkTheme = !isDarkTheme;
+    setIsDarkTheme(newDarkTheme);
+    // Grab body and toggle class
+    const body = document.querySelector("body");
+    body.classList.toggle("dark-theme", newDarkTheme);
   };
 
   return (
-    <AppContext.Provider value={{ items }}>{children}</AppContext.Provider>
+    <AppContext.Provider
+      value={{
+        isDarkTheme,
+        toggleDarkTheme,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 };
 

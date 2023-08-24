@@ -4,11 +4,11 @@ import ThemeToggle from "./components/ThemeToggle";
 
 const App = () => {
   return (
-    <>
+    <main>
       <ThemeToggle />
       <SearchForm />
       <Gallery />
-    </>
+    </main>
   );
 };
 export default App;
